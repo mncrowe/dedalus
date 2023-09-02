@@ -157,9 +157,8 @@ extensions = [
         include_dirs=include_dirs,
         libraries=libraries,
         library_dirs=library_dirs,
-        runtime_library_dirs=library_dirs,
-        extra_compile_args=extra_compile_args,
-        extra_link_args=extra_link_args),
+        extra_compile_args=["-Wno-error=declaration-after-statement"],
+        extra_link_args=["-Xlinker","-Bsymbolic","-Wl,--whole-archive","/opt/lib/libfftw3.a","/opt/lib/libfftw3_omp.a","/opt/lib/libfftw3_mpi.a","-Wl,--no-whole-archive"]),
     Extension(
         name='dedalus.core.transposes',
         sources=['dedalus/core/transposes.pyx'],
